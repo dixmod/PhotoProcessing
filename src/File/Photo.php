@@ -22,6 +22,38 @@ class Photo extends AbstractFile
         $this->setImage($fileName);
     }
 
+     public function setFilter(string $filterName)
+    {
+        $filter = $this->getFilter($filterName);
+        $this->image = $filter->processing($this->getImage());
+    }
+
+    /**
+     * The strategic method of selecting a filter for photos
+     * @param $filterName
+     * @return FilterInterface
+     * @throws \Exception
+     */
+    private function getFilter(string $filterName): FilterInterface
+    {
+        switch ($filterName) {
+            case 'sepia':
+                return new Filters\Sepia();
+            case 'negate':
+                return new Filters\Negate();
+            case 'grayscale':
+                return new Filters\Grayscale();
+            case 'emboss':
+                return new Filters\Emboss();
+            case 'mean_removal':
+                return new Filters\MeanRemoval();
+            case 'gaussian_blur':
+                return new Filters\GaussianBlur();
+            default:
+                throw new \Exception('Filter not found');
+        }
+    }
+    
     /**
      * @param $photographName
      * @return resource
@@ -102,37 +134,5 @@ class Photo extends AbstractFile
     public function getImage()
     {
         return $this->image;
-    }
-
-    public function setFilter(string $filterName)
-    {
-        $filter = $this->getFilter($filterName);
-        $this->image = $filter->processing($this->getImage());
-    }
-
-    /**
-     * The strategic method of selecting a filter for photos
-     * @param $filterName
-     * @return FilterInterface
-     * @throws \Exception
-     */
-    private function getFilter(string $filterName): FilterInterface
-    {
-        switch ($filterName) {
-            case 'sepia':
-                return new Filters\Sepia();
-            case 'negate':
-                return new Filters\Negate();
-            case 'grayscale':
-                return new Filters\Grayscale();
-            case 'emboss':
-                return new Filters\Emboss();
-            case 'mean_removal':
-                return new Filters\MeanRemoval();
-            case 'gaussian_blur':
-                return new Filters\GaussianBlur();
-            default:
-                throw new \Exception('Filter not found');
-        }
-    }
+    }   
 }
