@@ -2,6 +2,7 @@
   "name": "user/photo-processing",
   "description": "library processing photos",
   "license": "MIT",
+  "type": "library",
   "authors": [
     {
       "name": "dixmod",
@@ -10,5 +11,10 @@
   ],
   "require": {
     "php": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dixmod\\": "src/"
+    }
   }
 }
