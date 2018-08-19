@@ -1,0 +1,14 @@
+{
+  "name": "user/photo-processing",
+  "description": "library processing photos",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "dixmod",
+      "email": "dixmod@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2"
+  }
+}
